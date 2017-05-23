@@ -40,7 +40,8 @@ class App extends Component {
     this.webSocket.onmessage = (e) => {
       console.log("incoming message" + e)
       const message = JSON.parse(e.data);
-      this.setState({messages: message})
+      const allMessages = this.state.messages.concat(message)
+      this.setState({messages: allMessages})
         };
       }
 
@@ -66,7 +67,7 @@ class App extends Component {
       <nav className="navbar">
         <a href="/" className="navbar-brand">Chatty</a>
       </nav>
-        <MessageList messages= {this.state.messages} />
+        <MessageList messages={this.state.messages} />
         <ChatBar handleSubmit={this.handleSubmit} username={this.state.currentUser.name}
         handleUserName={this.handleUserName}/>
     </div>
