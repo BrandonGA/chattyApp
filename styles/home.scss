@@ -62,6 +62,7 @@
       font-weight: 700;
     }
 
+
     .navbar {
       background: tomato;
       border-bottom: 1px solid black;
@@ -83,4 +84,10 @@
       line-height: 60px;
       padding: 0 10px;
       text-decoration: none;
+    }
+
+    .navbar-counter {
+      float: right;
+      line-height: 60px;
+      padding: 0 10px;
     }

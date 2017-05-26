@@ -9,6 +9,9 @@ const PORT = 3001;
 // Id Generator
 const uuidV4 = require('uuid/v4');
 
+const clientStartupParameters = {};
+
+
 // Create a new express server
 // const server = express()
 //    // Make the express server serve static assets (html, javascript, css) from the /public folder
@@ -46,6 +49,22 @@ wss.on('connection', (ws) => {
     console.log('received message: ', message)
   })
 
+
+const clientCounter = () => {
+  let theCount = 0;
+  wss.clients.forEach((c) => {
+    theCount++;
+  })
+  clientStartupParameters.count = theCount;
+  clientStartupParameters.type = "incomingCounter";
+  broadcast(clientStartupParameters);
+}
+
+const clientStartup = () => {
+    clientCounter();
+  }
+
+  clientStartup();
 
   // Set up a callback for when a client closes the socket. This usually means they closed their browser.
   ws.on('close', () => console.log('Client disconnected'));

@@ -10,8 +10,10 @@ constructor (props) {
 
 
   handleUserChange = (event) => {
-    if (event.key == 'Enter') {
-      const usernameUpdate = `${this.props.username} changed their name to ${event.target.value}`
+    if (event.key === 'Enter') {
+      const usernameUpdate = `${this.props.username} changed
+      their name to ${event.target.value}`
+      console.log("name: " + event.target.value)
       const notification = {
         username: event.target.value,
         content: usernameUpdate,
@@ -22,9 +24,11 @@ constructor (props) {
   };
 
   handleUserAction = (event) => {
-    if (event.key == 'Enter'){
+    if (event.key === 'Enter'){
       console.log('user entered something!');
-      this.props.handleSubmit(this.props.username, event.target.value);
+      let userInput = event.target.value
+        event.target.value = '';
+      this.props.handleSubmit(userInput);
     }
   };
 
@@ -32,7 +36,7 @@ constructor (props) {
   render() {
     return (
       <footer className="chatbar">
-        <input  defaultValue={this.props.username} placeholder="Your Name (Optional)"
+        <input defaultValue={this.props.username} placeholder={this.props.username}
         onKeyPress={this.handleUserChange} />
         <input className="chatbar-message"
           value={this.props.content} placeholder="Type a message and hit ENTER" onKeyPress={this.handleUserAction} />

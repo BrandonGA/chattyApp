@@ -1,7 +1,15 @@
 import React, {Component} from 'react'
 
 class Message extends Component {
+  constructor(props) {
+    super(props)
+  }
+
   render() {
+    let messageUsername = '';
+
+   this.props.username === '' ? messageUsername = 'Anonymous' : messageUsername = this.props.username;
+
     return (
       <div className="message">
         <span className="message-username">{this.props.username}</span>
